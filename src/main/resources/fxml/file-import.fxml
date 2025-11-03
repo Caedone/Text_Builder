@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="edu.utdallas.cs4485.sentencebuilder.controller.FileImportController"
+      spacing="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="File Import" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <!-- File Selection -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="File:"/>
+        <TextField fx:id="filePathField" promptText="Select a file to import" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="browseButton" text="Browse..." onAction="#handleBrowse"/>
+    </HBox>
+
+    <!-- N-gram Processing Options -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <CheckBox fx:id="processNGramsCheckBox" text="Process N-grams during import"/>
+    </HBox>
+
+    <!-- N-gram N Value Slider -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="N Value:"/>
+        <Slider fx:id="ngramNValueSlider" min="2" max="5" value="3" showTickLabels="true" showTickMarks="true"
+                majorTickUnit="1" minorTickCount="0" snapToTicks="true" prefWidth="300"/>
+        <Label fx:id="ngramNValueLabel" text="3" minWidth="40"/>
+    </HBox>
+
+    <!-- Import Button and Progress -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="importButton" text="Import File" onAction="#handleImport"/>
+        <ProgressBar fx:id="importProgressBar" progress="0" prefWidth="300"/>
+    </HBox>
+
+    <!-- Status Label -->
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: gray;"/>
+
+    <!-- Import History -->
+    <Label text="Import History:" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <TableView fx:id="fileHistoryTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="filenameColumn" text="Filename" prefWidth="250"/>
+            <TableColumn fx:id="wordCountColumn" text="Word Count" prefWidth="100"/>
+            <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+            <TableColumn fx:id="dateColumn" text="Import Date" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+</VBox>

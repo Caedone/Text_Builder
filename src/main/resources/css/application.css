@@ -1,0 +1,136 @@
+/* Sentence Builder Application Styles */
+
+/* Root styles */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-base: #f4f4f4;
+    -fx-background: #ffffff;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #357abd;
+}
+
+.button:pressed {
+    -fx-background-color: #2a5f99;
+}
+
+.button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* Text field styles */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10 6 10;
+}
+
+.text-field:focused {
+    -fx-border-color: #4a90e2;
+    -fx-border-width: 2;
+}
+
+/* Text area styles */
+.text-area {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.text-area:focused {
+    -fx-border-color: #4a90e2;
+    -fx-border-width: 2;
+}
+
+/* Table view styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+}
+
+.table-view .column-header {
+    -fx-background-color: #e8e8e8;
+    -fx-font-weight: bold;
+    -fx-padding: 8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #d0e8ff;
+    -fx-text-fill: black;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Tab pane styles */
+.tab-pane {
+    -fx-background-color: white;
+}
+
+.tab {
+    -fx-background-color: #e8e8e8;
+    -fx-padding: 8 16 8 16;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+}
+
+/* Progress bar styles */
+.progress-bar {
+    -fx-background-color: #e8e8e8;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #4a90e2;
+}
+
+/* Label styles */
+.label {
+    -fx-text-fill: #333333;
+}
+
+/* Radio button styles */
+.radio-button {
+    -fx-text-fill: #333333;
+}
+
+.radio-button:selected > .radio {
+    -fx-background-color: #4a90e2;
+}
+
+/* Slider styles */
+.slider .track {
+    -fx-background-color: #cccccc;
+}
+
+.slider .thumb {
+    -fx-background-color: #4a90e2;
+}
+
+/* Menu bar styles */
+.menu-bar {
+    -fx-background-color: #f8f8f8;
+}
+
+.menu-item:hover {
+    -fx-background-color: #e0e0e0;
+}

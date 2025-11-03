@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="edu.utdallas.cs4485.sentencebuilder.controller.MainController">
+
+    <!-- Menu Bar -->
+    <MenuBar>
+        <Menu text="File">
+            <MenuItem text="Exit" onAction="#handleExit"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+
+    <!-- Main Content - Tab Pane -->
+    <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS">
+        <Tab text="Text Generator" closable="false">
+            <fx:include source="text-generator.fxml"/>
+        </Tab>
+        <Tab text="File Import" closable="false">
+            <fx:include source="file-import.fxml"/>
+        </Tab>
+        <Tab text="Database View" closable="false">
+            <fx:include source="database-view.fxml"/>
+        </Tab>
+    </TabPane>
+
+</VBox>

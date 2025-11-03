@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="edu.utdallas.cs4485.sentencebuilder.controller.DatabaseViewController"
+      spacing="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Database View" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <!-- Search and Actions -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search..." prefWidth="300" onAction="#handleSearch"/>
+        <Button fx:id="refreshButton" text="Refresh" onAction="#handleRefresh"/>
+        <Button text="Recalculate Probabilities" onAction="#handleRecalculateProbabilities"/>
+    </HBox>
+
+    <!-- Status Label -->
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: gray;"/>
+
+    <!-- Tab Pane for Words and Word Pairs -->
+    <TabPane fx:id="databaseTabPane" VBox.vgrow="ALWAYS">
+        <!-- Words Tab -->
+        <Tab text="Words" closable="false">
+            <TableView fx:id="wordsTable">
+                <columns>
+                    <TableColumn fx:id="wordTextColumn" text="Word" prefWidth="200"/>
+                    <TableColumn fx:id="totalCountColumn" text="Total Count" prefWidth="100"/>
+                    <TableColumn fx:id="startCountColumn" text="Start Count" prefWidth="100"/>
+                    <TableColumn fx:id="endCountColumn" text="End Count" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </Tab>
+
+        <!-- Word Pairs Tab -->
+        <Tab text="Word Pairs" closable="false">
+            <TableView fx:id="wordPairsTable">
+                <columns>
+                    <TableColumn fx:id="firstWordColumn" text="First Word" prefWidth="150"/>
+                    <TableColumn fx:id="secondWordColumn" text="Second Word" prefWidth="150"/>
+                    <TableColumn fx:id="transitionCountColumn" text="Count" prefWidth="100"/>
+                    <TableColumn fx:id="probabilityColumn" text="Probability" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </Tab>
+    </TabPane>
+
+</VBox>
