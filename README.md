@@ -1,18 +1,3 @@
-# Sentence Builder
-
-A JavaFX application that uses Markov chains to generate text based on imported training data.
-
-## CS4485 - Senior Capstone Project
-
-### Team Members
-- [Team Member 1]
-- [Team Member 2]
-- [Team Member 3]
-- [Team Member 4]
-
-## Overview
-
-Sentence Builder is a text generation application that uses Markov chain algorithms to analyze input text and generate new sentences based on learned word patterns. The application provides both first-order and second-order Markov chain implementations and includes autocomplete functionality.
 
 ## Technologies Used
 
