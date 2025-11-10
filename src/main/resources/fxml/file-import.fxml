@@ -41,13 +41,14 @@
     </HBox>
 
     <!-- Status Label -->
-    <Label fx:id="statusLabel" text="" style="-fx-text-fill: gray;"/>
+    <Label fx:id="statusLabel" text="" wrapText="true" style="-fx-text-fill: gray;"/>
 
     <!-- Import History -->
     <Label text="Import History:" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
     <TableView fx:id="fileHistoryTable" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="filenameColumn" text="Filename" prefWidth="250"/>
+            <TableColumn fx:id="filenameColumn" text="Filename" prefWidth="200"/>
+            <TableColumn fx:id="filePathColumn" text="File Location" prefWidth="400"/>
             <TableColumn fx:id="wordCountColumn" text="Word Count" prefWidth="100"/>
             <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
             <TableColumn fx:id="dateColumn" text="Import Date" prefWidth="150"/>
