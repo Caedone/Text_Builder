@@ -1,20 +1,19 @@
 package edu.utdallas.cs4485.sentencebuilder.service;
 
-import edu.utdallas.cs4485.sentencebuilder.dao.DatabaseConnection;
-import edu.utdallas.cs4485.sentencebuilder.dao.WordDAO;
-import edu.utdallas.cs4485.sentencebuilder.dao.WordPairDAO;
-import edu.utdallas.cs4485.sentencebuilder.dao.ImportedFileDAO;
-import edu.utdallas.cs4485.sentencebuilder.model.Word;
-import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
-import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import edu.utdallas.cs4485.sentencebuilder.dao.DatabaseConnection;
+import edu.utdallas.cs4485.sentencebuilder.dao.ImportedFileDAO;
+import edu.utdallas.cs4485.sentencebuilder.dao.WordDAO;
+import edu.utdallas.cs4485.sentencebuilder.dao.WordPairDAO;
+import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile;
+import edu.utdallas.cs4485.sentencebuilder.model.Word;
+import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
+
 /**
- * Service class for database operations.
- * Coordinates between DAOs and provides transaction management.
+ * Service class for database operations. Coordinates between DAOs and provides
+ * transaction management.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -161,6 +160,22 @@ public class DatabaseService {
     public void updateImportedFile(ImportedFile file) throws SQLException {
         // TODO: Implement file update logic
         importedFileDAO.update(file);
+    }
+
+    /**
+     * Deletes an imported file record from the database.
+     *
+     * This method will only remove the file record from the inported_files
+     * table. Training data associated with this file (words, word pairs,
+     * N-grams) will remain in the database to preserve data integrity, as they
+     * may be shared with other imported files.
+     *
+     * @param fileId the ID of the file to delete
+     * @throws SQLException if database error occurs
+     */
+    public void deleteImportedFile(int fileId) throws SQLException {
+        // TODO: Implement file deletion logic
+        importedFileDAO.delete(fileId);
     }
 
     /**

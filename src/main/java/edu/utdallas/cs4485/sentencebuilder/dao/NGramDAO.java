@@ -1,14 +1,22 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
-import edu.utdallas.cs4485.sentencebuilder.model.NGram;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.utdallas.cs4485.sentencebuilder.model.NGram;
+
 /**
- * Data Access Object for NGram entities.
- * Handles all database operations for N-grams.
+ * Data Access Object for NGram entities. Handles all database operations for
+ * N-grams.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -32,11 +40,10 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public NGram insert(NGram ngram) throws SQLException {
-        String sql = "INSERT INTO ngrams (n, ngram_text, next_word_id, transition_count, transition_probability) " +
-                     "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ngrams (n, ngram_text, next_word_id, transition_count, transition_probability) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, ngram.getN());
             stmt.setString(2, ngram.getNgramText());
@@ -63,11 +70,10 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public void update(NGram ngram) throws SQLException {
-        String sql = "UPDATE ngrams SET transition_count = ?, transition_probability = ? " +
-                     "WHERE ngram_id = ?";
+        String sql = "UPDATE ngrams SET transition_count = ?, transition_probability = ? "
+                + "WHERE ngram_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, ngram.getTransitionCount());
             stmt.setDouble(2, ngram.getTransitionProbability());
@@ -89,8 +95,7 @@ public class NGramDAO {
     public NGram findByTextAndNextWord(int n, String ngramText, int nextWordId) throws SQLException {
         String sql = "SELECT * FROM ngrams WHERE n = ? AND ngram_text = ? AND next_word_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, n);
             stmt.setString(2, ngramText);
@@ -115,16 +120,15 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public List<NGram> findByNgramText(int n, String ngramText) throws SQLException {
-        String sql = "SELECT ng.*, w.word_text as next_word_text " +
-                     "FROM ngrams ng " +
-                     "JOIN words w ON ng.next_word_id = w.word_id " +
-                     "WHERE ng.n = ? AND ng.ngram_text = ? " +
-                     "ORDER BY ng.transition_probability DESC";
+        String sql = "SELECT ng.*, w.word_text as next_word_text "
+                + "FROM ngrams ng "
+                + "JOIN words w ON ng.next_word_id = w.word_id "
+                + "WHERE ng.n = ? AND ng.ngram_text = ? "
+                + "ORDER BY ng.transition_probability DESC";
 
         List<NGram> ngrams = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, n);
             stmt.setString(2, ngramText);
@@ -150,17 +154,16 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public List<NGram> findByN(int n, int limit) throws SQLException {
-        String sql = "SELECT ng.*, w.word_text as next_word_text " +
-                     "FROM ngrams ng " +
-                     "JOIN words w ON ng.next_word_id = w.word_id " +
-                     "WHERE ng.n = ? " +
-                     "ORDER BY ng.transition_count DESC " +
-                     "LIMIT ?";
+        String sql = "SELECT ng.*, w.word_text as next_word_text "
+                + "FROM ngrams ng "
+                + "JOIN words w ON ng.next_word_id = w.word_id "
+                + "WHERE ng.n = ? "
+                + "ORDER BY ng.transition_count DESC "
+                + "LIMIT ?";
 
         List<NGram> ngrams = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, n);
             stmt.setInt(2, limit);
@@ -184,16 +187,14 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public List<NGram> findAll() throws SQLException {
-        String sql = "SELECT ng.*, w.word_text as next_word_text " +
-                     "FROM ngrams ng " +
-                     "JOIN words w ON ng.next_word_id = w.word_id " +
-                     "ORDER BY ng.n, ng.transition_count DESC";
+        String sql = "SELECT ng.*, w.word_text as next_word_text "
+                + "FROM ngrams ng "
+                + "JOIN words w ON ng.next_word_id = w.word_id "
+                + "ORDER BY ng.n, ng.transition_count DESC";
 
         List<NGram> ngrams = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 NGram ngram = mapResultSetToNGram(rs);
@@ -211,14 +212,13 @@ public class NGramDAO {
      * @throws SQLException if database error occurs
      */
     public void recalculateProbabilities() throws SQLException {
-        String sql = "UPDATE ngrams ng " +
-                     "JOIN (SELECT n, ngram_text, SUM(transition_count) as total " +
-                     "      FROM ngrams GROUP BY n, ngram_text) totals " +
-                     "ON ng.n = totals.n AND ng.ngram_text = totals.ngram_text " +
-                     "SET ng.transition_probability = ng.transition_count / totals.total";
+        String sql = "UPDATE ngrams ng "
+                + "JOIN (SELECT n, ngram_text, SUM(transition_count) as total "
+                + "      FROM ngrams GROUP BY n, ngram_text) totals "
+                + "ON ng.n = totals.n AND ng.ngram_text = totals.ngram_text "
+                + "SET ng.transition_probability = ng.transition_count / totals.total";
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement()) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement()) {
 
             stmt.executeUpdate(sql);
         }
@@ -233,8 +233,7 @@ public class NGramDAO {
     public void delete(int ngramId) throws SQLException {
         String sql = "DELETE FROM ngrams WHERE ngram_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, ngramId);
             stmt.executeUpdate();
@@ -250,8 +249,7 @@ public class NGramDAO {
     public void deleteByN(int n) throws SQLException {
         String sql = "DELETE FROM ngrams WHERE n = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, n);
             stmt.executeUpdate();
@@ -268,8 +266,7 @@ public class NGramDAO {
     public int countByN(int n) throws SQLException {
         String sql = "SELECT COUNT(*) FROM ngrams WHERE n = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, n);
 

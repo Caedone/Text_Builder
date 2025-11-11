@@ -1,11 +1,15 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 
 /**
- * Main controller for the application.
- * Manages the main window and tab navigation.
+ * Main controller for the application. Manages the main window and tab
+ * navigation.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -16,8 +20,8 @@ public class MainController {
     private TabPane mainTabPane;
 
     /**
-     * Initializes the controller.
-     * Called automatically by JavaFX after FXML loading.
+     * Initializes the controller. Called automatically by JavaFX after FXML
+     * loading.
      */
     @FXML
     public void initialize() {

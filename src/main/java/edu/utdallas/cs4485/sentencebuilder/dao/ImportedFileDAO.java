@@ -1,15 +1,23 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile;
 import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile.FileStatus;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Data Access Object for ImportedFile entities.
- * Handles all database operations for imported files.
+ * Data Access Object for ImportedFile entities. Handles all database operations
+ * for imported files.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -34,11 +42,10 @@ public class ImportedFileDAO {
      */
     public ImportedFile insert(ImportedFile file) throws SQLException {
         // TODO: Implement file insertion
-        String sql = "INSERT INTO imported_files (filename, file_path, word_count, status, error_message) " +
-                     "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO imported_files (filename, file_path, word_count, status, error_message) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, file.getFilename());
             stmt.setString(2, file.getFilePath());
@@ -66,11 +73,10 @@ public class ImportedFileDAO {
      */
     public void update(ImportedFile file) throws SQLException {
         // TODO: Implement file update
-        String sql = "UPDATE imported_files SET word_count = ?, status = ?, error_message = ? " +
-                     "WHERE file_id = ?";
+        String sql = "UPDATE imported_files SET word_count = ?, status = ?, error_message = ? "
+                + "WHERE file_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, file.getWordCount());
             stmt.setString(2, file.getStatus().name().toLowerCase());
@@ -92,8 +98,7 @@ public class ImportedFileDAO {
         // TODO: Implement file search by ID
         String sql = "SELECT * FROM imported_files WHERE file_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, fileId);
 
@@ -118,8 +123,7 @@ public class ImportedFileDAO {
         // TODO: Implement file search by path
         String sql = "SELECT * FROM imported_files WHERE file_path = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, filePath);
 
@@ -144,9 +148,7 @@ public class ImportedFileDAO {
         String sql = "SELECT * FROM imported_files ORDER BY import_date DESC";
         List<ImportedFile> files = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 files.add(mapResultSetToImportedFile(rs));
@@ -168,8 +170,7 @@ public class ImportedFileDAO {
         String sql = "SELECT * FROM imported_files WHERE status = ? ORDER BY import_date DESC";
         List<ImportedFile> files = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, status.name().toLowerCase());
 
@@ -193,8 +194,7 @@ public class ImportedFileDAO {
         // TODO: Implement file deletion
         String sql = "DELETE FROM imported_files WHERE file_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, fileId);
             stmt.executeUpdate();

@@ -1,14 +1,22 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
-import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
+
 /**
- * Data Access Object for WordPair entities.
- * Handles all database operations for word pairs.
+ * Data Access Object for WordPair entities. Handles all database operations for
+ * word pairs.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -33,11 +41,10 @@ public class WordPairDAO {
      */
     public WordPair insert(WordPair wordPair) throws SQLException {
         // TODO: Implement word pair insertion
-        String sql = "INSERT INTO word_pairs (first_word_id, second_word_id, transition_count, transition_probability) " +
-                     "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO word_pairs (first_word_id, second_word_id, transition_count, transition_probability) "
+                + "VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, wordPair.getFirstWordId());
             stmt.setInt(2, wordPair.getSecondWordId());
@@ -64,11 +71,10 @@ public class WordPairDAO {
      */
     public void update(WordPair wordPair) throws SQLException {
         // TODO: Implement word pair update
-        String sql = "UPDATE word_pairs SET transition_count = ?, transition_probability = ? " +
-                     "WHERE pair_id = ?";
+        String sql = "UPDATE word_pairs SET transition_count = ?, transition_probability = ? "
+                + "WHERE pair_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, wordPair.getTransitionCount());
             stmt.setDouble(2, wordPair.getTransitionProbability());
@@ -90,8 +96,7 @@ public class WordPairDAO {
         // TODO: Implement word pair search
         String sql = "SELECT * FROM word_pairs WHERE first_word_id = ? AND second_word_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, firstWordId);
             stmt.setInt(2, secondWordId);
@@ -115,17 +120,16 @@ public class WordPairDAO {
      */
     public List<WordPair> findByFirstWordId(int firstWordId) throws SQLException {
         // TODO: Implement word pair search by first word
-        String sql = "SELECT wp.*, w1.word_text as first_word_text, w2.word_text as second_word_text " +
-                     "FROM word_pairs wp " +
-                     "JOIN words w1 ON wp.first_word_id = w1.word_id " +
-                     "JOIN words w2 ON wp.second_word_id = w2.word_id " +
-                     "WHERE wp.first_word_id = ? " +
-                     "ORDER BY wp.transition_probability DESC";
+        String sql = "SELECT wp.*, w1.word_text as first_word_text, w2.word_text as second_word_text "
+                + "FROM word_pairs wp "
+                + "JOIN words w1 ON wp.first_word_id = w1.word_id "
+                + "JOIN words w2 ON wp.second_word_id = w2.word_id "
+                + "WHERE wp.first_word_id = ? "
+                + "ORDER BY wp.transition_probability DESC";
 
         List<WordPair> wordPairs = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, firstWordId);
 
@@ -150,17 +154,15 @@ public class WordPairDAO {
      */
     public List<WordPair> findAll() throws SQLException {
         // TODO: Implement find all word pairs
-        String sql = "SELECT wp.*, w1.word_text as first_word_text, w2.word_text as second_word_text " +
-                     "FROM word_pairs wp " +
-                     "JOIN words w1 ON wp.first_word_id = w1.word_id " +
-                     "JOIN words w2 ON wp.second_word_id = w2.word_id " +
-                     "ORDER BY wp.transition_count DESC";
+        String sql = "SELECT wp.*, w1.word_text as first_word_text, w2.word_text as second_word_text "
+                + "FROM word_pairs wp "
+                + "JOIN words w1 ON wp.first_word_id = w1.word_id "
+                + "JOIN words w2 ON wp.second_word_id = w2.word_id "
+                + "ORDER BY wp.transition_count DESC";
 
         List<WordPair> wordPairs = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 WordPair wordPair = mapResultSetToWordPair(rs);
@@ -180,14 +182,13 @@ public class WordPairDAO {
      */
     public void recalculateProbabilities() throws SQLException {
         // TODO: Implement probability recalculation
-        String sql = "UPDATE word_pairs wp " +
-                     "JOIN (SELECT first_word_id, SUM(transition_count) as total " +
-                     "      FROM word_pairs GROUP BY first_word_id) totals " +
-                     "ON wp.first_word_id = totals.first_word_id " +
-                     "SET wp.transition_probability = wp.transition_count / totals.total";
+        String sql = "UPDATE word_pairs wp "
+                + "JOIN (SELECT first_word_id, SUM(transition_count) as total "
+                + "      FROM word_pairs GROUP BY first_word_id) totals "
+                + "ON wp.first_word_id = totals.first_word_id "
+                + "SET wp.transition_probability = wp.transition_count / totals.total";
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement()) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement()) {
 
             stmt.executeUpdate(sql);
         }
@@ -203,8 +204,7 @@ public class WordPairDAO {
         // TODO: Implement word pair deletion
         String sql = "DELETE FROM word_pairs WHERE pair_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, pairId);
             stmt.executeUpdate();

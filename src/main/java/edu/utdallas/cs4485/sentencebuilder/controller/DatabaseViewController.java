@@ -1,3 +1,7 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import edu.utdallas.cs4485.sentencebuilder.model.Word;
@@ -7,11 +11,16 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
- * Controller for the database view tab.
- * Displays words and word pairs from the database.
+ * Controller for the database view tab. Displays words and word pairs from the
+ * database.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -87,34 +96,34 @@ public class DatabaseViewController {
      * Sets up the column bindings for the words table.
      */
     private void setupWordTableColumns() {
-        wordTextColumn.setCellValueFactory(cellData ->
-            new SimpleStringProperty(cellData.getValue().getWordText()));
+        wordTextColumn.setCellValueFactory(cellData
+                -> new SimpleStringProperty(cellData.getValue().getWordText()));
 
-        totalCountColumn.setCellValueFactory(cellData ->
-            new SimpleIntegerProperty(cellData.getValue().getTotalCount()).asObject());
+        totalCountColumn.setCellValueFactory(cellData
+                -> new SimpleIntegerProperty(cellData.getValue().getTotalCount()).asObject());
 
-        startCountColumn.setCellValueFactory(cellData ->
-            new SimpleIntegerProperty(cellData.getValue().getSentenceStartCount()).asObject());
+        startCountColumn.setCellValueFactory(cellData
+                -> new SimpleIntegerProperty(cellData.getValue().getSentenceStartCount()).asObject());
 
-        endCountColumn.setCellValueFactory(cellData ->
-            new SimpleIntegerProperty(cellData.getValue().getSentenceEndCount()).asObject());
+        endCountColumn.setCellValueFactory(cellData
+                -> new SimpleIntegerProperty(cellData.getValue().getSentenceEndCount()).asObject());
     }
 
     /**
      * Sets up the column bindings for the word pairs table.
      */
     private void setupWordPairTableColumns() {
-        firstWordColumn.setCellValueFactory(cellData ->
-            new SimpleStringProperty(cellData.getValue().getFirstWordText()));
+        firstWordColumn.setCellValueFactory(cellData
+                -> new SimpleStringProperty(cellData.getValue().getFirstWordText()));
 
-        secondWordColumn.setCellValueFactory(cellData ->
-            new SimpleStringProperty(cellData.getValue().getSecondWordText()));
+        secondWordColumn.setCellValueFactory(cellData
+                -> new SimpleStringProperty(cellData.getValue().getSecondWordText()));
 
-        transitionCountColumn.setCellValueFactory(cellData ->
-            new SimpleIntegerProperty(cellData.getValue().getTransitionCount()).asObject());
+        transitionCountColumn.setCellValueFactory(cellData
+                -> new SimpleIntegerProperty(cellData.getValue().getTransitionCount()).asObject());
 
-        probabilityColumn.setCellValueFactory(cellData ->
-            new SimpleDoubleProperty(cellData.getValue().getTransitionProbability()).asObject());
+        probabilityColumn.setCellValueFactory(cellData
+                -> new SimpleDoubleProperty(cellData.getValue().getTransitionProbability()).asObject());
     }
 
     /**

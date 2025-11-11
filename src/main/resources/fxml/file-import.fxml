@@ -43,8 +43,11 @@
     <!-- Status Label -->
     <Label fx:id="statusLabel" text="" wrapText="true" style="-fx-text-fill: gray;"/>
 
-    <!-- Import History -->
-    <Label text="Import History:" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+    <!-- Import History/ Delete File  -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Import History:" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+        <Button fx:id="deleteFileButton" text="Delete Selected" onAction="#handleDeleteFile" styleClass="delete-button"/>
+    </HBox>
     <TableView fx:id="fileHistoryTable" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="filenameColumn" text="Filename" prefWidth="200"/>

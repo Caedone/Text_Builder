@@ -1,13 +1,24 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import edu.utdallas.cs4485.sentencebuilder.model.GenerationResult;
 import edu.utdallas.cs4485.sentencebuilder.service.MarkovChainService;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
- * Controller for the text generation tab.
- * Handles user input for text generation parameters.
+ * Controller for the text generation tab. Handles user input for text
+ * generation parameters.
  *
  * @author CS4485 Team
  * @version 1.0

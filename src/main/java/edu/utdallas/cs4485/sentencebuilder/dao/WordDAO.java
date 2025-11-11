@@ -1,14 +1,22 @@
+/**
+ *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
+ *  NetID: mxs220007
+ */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
-import edu.utdallas.cs4485.sentencebuilder.model.Word;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.utdallas.cs4485.sentencebuilder.model.Word;
+
 /**
- * Data Access Object for Word entities.
- * Handles all database operations for words.
+ * Data Access Object for Word entities. Handles all database operations for
+ * words.
  *
  * @author CS4485 Team
  * @version 1.0
@@ -33,11 +41,10 @@ public class WordDAO {
      */
     public Word insert(Word word) throws SQLException {
         // TODO: Implement word insertion
-        String sql = "INSERT INTO words (word_text, total_count, sentence_start_count, sentence_end_count) " +
-                     "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO words (word_text, total_count, sentence_start_count, sentence_end_count) "
+                + "VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setString(1, word.getWordText());
             stmt.setInt(2, word.getTotalCount());
@@ -64,11 +71,10 @@ public class WordDAO {
      */
     public void update(Word word) throws SQLException {
         // TODO: Implement word update
-        String sql = "UPDATE words SET total_count = ?, sentence_start_count = ?, " +
-                     "sentence_end_count = ? WHERE word_id = ?";
+        String sql = "UPDATE words SET total_count = ?, sentence_start_count = ?, "
+                + "sentence_end_count = ? WHERE word_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, word.getTotalCount());
             stmt.setInt(2, word.getSentenceStartCount());
@@ -90,8 +96,7 @@ public class WordDAO {
         // TODO: Implement word search by text
         String sql = "SELECT * FROM words WHERE word_text = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, wordText);
 
@@ -116,8 +121,7 @@ public class WordDAO {
         // TODO: Implement word search by ID
         String sql = "SELECT * FROM words WHERE word_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, wordId);
 
@@ -142,9 +146,7 @@ public class WordDAO {
         String sql = "SELECT * FROM words ORDER BY total_count DESC";
         List<Word> words = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = dbConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 words.add(mapResultSetToWord(rs));
@@ -163,12 +165,11 @@ public class WordDAO {
      */
     public List<Word> findSentenceStarters(int limit) throws SQLException {
         // TODO: Implement sentence starters query
-        String sql = "SELECT * FROM words WHERE sentence_start_count > 0 " +
-                     "ORDER BY sentence_start_count DESC LIMIT ?";
+        String sql = "SELECT * FROM words WHERE sentence_start_count > 0 "
+                + "ORDER BY sentence_start_count DESC LIMIT ?";
         List<Word> words = new ArrayList<>();
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, limit);
 
@@ -192,8 +193,7 @@ public class WordDAO {
         // TODO: Implement word deletion
         String sql = "DELETE FROM words WHERE word_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, wordId);
             stmt.executeUpdate();

@@ -1,19 +1,26 @@
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
+/**
+ *
+ * Written by Manraj Singh for CS Project, starting Oct 28, 2025. NetID:
+ * mxs220007 Drastically improves performance since we don't have to create a
+ * new connection every time Hikari will work alongside java.sql - not replace
+ * it.
+ */
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 /**
- * Manages database connections using HikariCP connection pool.
- * Implements singleton pattern.
+ * Manages database connections using HikariCP connection pool. Implements
+ * singleton pattern.
  *
- * @author CS4485 Team
+ * @author Manraj Singh
  * @version 1.0
  */
 public class DatabaseConnection {
@@ -42,7 +49,9 @@ public class DatabaseConnection {
     }
 
     /**
-     * Initializes the HikariCP data source.
+     * Initializes the HikariCP data source. Note for future self: TODO:
+     * Implment manual connection management i.e. Open/Close connection per
+     * method call
      */
     private void initializeDataSource() {
         try {
@@ -54,6 +63,7 @@ public class DatabaseConnection {
             config.setPassword(props.getProperty("db.password"));
 
             // Connection pool settings
+            /*  Not really necessary since DB isn't complex enough 
             config.setMaximumPoolSize(
                     Integer.parseInt(props.getProperty("db.pool.maximum.size", "10")));
             config.setMinimumIdle(
@@ -72,7 +82,7 @@ public class DatabaseConnection {
                     props.getProperty("db.prep.stmt.cache.size", "250"));
             config.addDataSourceProperty("prepStmtCacheSqlLimit",
                     props.getProperty("db.prep.stmt.cache.sql.limit", "2048"));
-
+             */
             this.dataSource = new HikariDataSource(config);
 
         } catch (IOException e) {
