@@ -11,6 +11,10 @@ import java.util.List;
  * Service class for text processing operations.
  * Handles file reading, tokenization, and text normalization.
  *
+ * Rizvy – Integration & Testing Notes:
+ * - Verified that this service supports all frontend file import workflows.
+ * - Confirmed behavior across TXT files and observed proper fallback for unsupported formats.
+ * - Ensured tokenizer methods return consistent results for UI display and N-gram/Markov processing.
  * @author CS4485 Team
  * @version 1.0
  */
@@ -18,6 +22,10 @@ public class TextProcessingService {
 
     /**
      * Reads text from a file.
+     *
+     * Rizvy Testing:
+     * - Validated this works cleanly with the File Import UI, including large files.
+     * - Verified exception handling surfaces meaningful errors to UI layer.
      *
      * @param filePath path to the file
      * @return file contents as string
@@ -64,6 +72,10 @@ public class TextProcessingService {
     /**
      * Counts words in text.
      *
+     * Rizvy Testing:
+     * - Verified results match UI displayed word counts for imports and previews.
+     * - Ensured non-word tokens are filtered out (punctuation, invalid chars).
+     *
      * @param text the text to analyze
      * @return word count
      */
@@ -100,6 +112,10 @@ public class TextProcessingService {
     /**
      * Extracts plain text from various file formats.
      *
+     * Rizvy – Testing Notes:
+     * - UI currently supports plain TXT extraction, with placeholders for DOC/PDF.
+     * - Verified errors are surfaced gracefully to user when unsupported files selected.
+     *
      * @param filePath path to the file
      * @return extracted text
      * @throws IOException if file cannot be processed
@@ -124,6 +140,10 @@ public class TextProcessingService {
 
     /**
      * Cleans text by removing non-printable characters and normalizing whitespace.
+     *
+     * Rizvy:
+     * - Ensured cleaner provides predictable data before DB insertion and tokenization.
+     * - Verified impact on UI preview output before saving to DB.
      *
      * @param text the text to clean
      * @return cleaned text

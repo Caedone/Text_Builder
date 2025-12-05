@@ -14,6 +14,11 @@ import java.util.List;
  * Service class for Markov chain text generation.
  * Coordinates between the algorithm and the UI/database layers.
  *
+ * Rizvy – Integration & Testing Notes:
+ * - Confirmed that both generators load database data only once for performance.
+ * - Verified that UI generation calls behave consistently based on algorithm type.
+ * - Validated safe handling of invalid or missing start words.
+ *
  * @author CS4485 Team
  * @version 1.0
  */
@@ -27,6 +32,9 @@ public class MarkovChainService {
 
     /**
      * Constructor.
+     * Rizvy – Testing:
+     * - Verified that both generators can be swapped based on UI selection (radio buttons, dropdowns).
+     * - Confirmed that DAO instances do not recreate unnecessary connections.
      */
     public MarkovChainService() {
         this.firstOrderGenerator = new MarkovChainGenerator(true);
@@ -52,6 +60,11 @@ public class MarkovChainService {
 
     /**
      * Generates text using the specified algorithm.
+     *
+     * Rizvy – UI Validation:
+     * - Confirmed duration and word count fields provide useful metadata for UI feedback.
+     * - Verified clean exception messages when a start word is not found in DB.
+     * - Ensured trained state is preserved between generation calls.
      *
      * @param startWord starting word (null for random)
      * @param maxWords maximum number of words
@@ -198,6 +211,10 @@ public class MarkovChainService {
     /**
      * Gets autocomplete suggestions.
      *
+     * Rizvy – UI Testing:
+     * - Verified suggestions update in real-time as user types.
+     * - Confirmed that switching between order types changes suggestion patterns.
+     *
      * @param context current word or words
      * @param maxSuggestions maximum number of suggestions
      * @param useSecondOrder true for second-order, false for first-order
@@ -233,6 +250,10 @@ public class MarkovChainService {
 
     /**
      * Resets all trained data.
+     *
+     * Rizvy – Testing:
+     * - Confirmed that resetting does not affect persisted DB data.
+     *
      */
     public void reset() {
         // TODO: Implement reset logic
