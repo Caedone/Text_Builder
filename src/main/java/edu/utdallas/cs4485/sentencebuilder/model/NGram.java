@@ -1,3 +1,29 @@
+/******************************************************************************
+ * N-Gram Model Class
+ *
+ * This class represents an N-gram used in the Sentence Builder application for
+ * probabilistic text generation. It stores the N-gram sequence, its component
+ * words, and statistical data needed for modeling transitions in N-gram and
+ * Markov-based algorithms.
+ *
+ * Key functionality includes:
+ * 1. N-Gram Structure:
+ *    - Stores the N value, full sequence text, and tokenized word array.
+ *
+ * 2. Transition Data:
+ *    - Tracks the next word ID, transition count, and computed probability.
+ *
+ * 3. Database + UI Support:
+ *    - Includes IDs, timestamps, and optional display fields, with automatic
+ *      synchronization between ngramText and its word array.
+ *
+ * The class is used by the text-generation engine and database layer to build
+ * conditional word prediction models.
+ *
+ * Written by Bhaskar Atmakuri for CS4485.0W1, capstone project, starting October 2025.
+ * NetID: BXA210025
+ ******************************************************************************/
+
 package edu.utdallas.cs4485.sentencebuilder.model;
 
 import java.sql.Timestamp;

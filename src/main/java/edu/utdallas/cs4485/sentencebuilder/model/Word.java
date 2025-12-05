@@ -1,3 +1,28 @@
+/******************************************************************************
+ * Word Model Class
+ *
+ * This class represents a single word stored in the Sentence Builder database,
+ * along with basic frequency statistics used for sentence boundary detection
+ * and probability calculations in text generation.
+ *
+ * Key functionality includes:
+ * 1. Word Data:
+ *    - Stores word text and unique ID.
+ *
+ * 2. Frequency Tracking:
+ *    - Maintains total occurrence counts and how often the word appears at
+ *      sentence boundaries.
+ *
+ * 3. Database + UI Integration:
+ *    - Includes timestamps and helper increment methods for updating counts.
+ *
+ * Used by the text-generation engine and database layer when building word-
+ * level probability models.
+ *
+ * Written by Bhaskar Atmakuri for CS4485.0W1, capstone project, starting October 2025.
+ * NetID: BXA210025
+ ******************************************************************************/
+
 package edu.utdallas.cs4485.sentencebuilder.model;
 
 import java.sql.Timestamp;
