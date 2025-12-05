@@ -5,13 +5,31 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Tokenizes text into words and sentences.
- * Handles punctuation and special characters.
+/******************************************************************************
+ * Text Tokenization Utility for Sentence Builder
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This class provides static helper methods used by the backend pipeline to
+ * turn raw text into clean tokens that our Markov and N-gram algorithms can
+ * train on. It is responsible for:
+ *
+ *  - Splitting raw input into individual word tokens while preserving
+ *    sentence-ending punctuation as separate tokens when needed.
+ *  - Splitting larger blocks of text into individual sentences so the
+ *    algorithms can respect sentence boundaries.
+ *  - Normalizing text by collapsing whitespace and converting to lowercase
+ *    so that "Dog", "dog", and "DOG" are treated as the same word.
+ *  - Utility checks for punctuation and sentence-end markers, and helpers
+ *    to strip punctuation and validate that a token is a real word.
+ *
+ * The methods here are used by the TextProcessingService and the file-import
+ * pipeline when documents are uploaded. By centralizing tokenization logic
+ * in this class, we ensure that all training data is cleaned and normalized
+ * the same way regardless of where it comes from.
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project, Fall 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
+
 public class TextTokenizer {
 
     private static final Pattern WORD_PATTERN = Pattern.compile("\\b[\\w']+\\b|[.!?,;:]");
