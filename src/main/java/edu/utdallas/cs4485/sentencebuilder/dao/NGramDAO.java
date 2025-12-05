@@ -21,7 +21,7 @@ import edu.utdallas.cs4485.sentencebuilder.model.NGram;
  * @author CS4485 Team
  * @version 1.0
  */
-public class git add .NGramDAO {
+public class NGramDAO {
 
     private DatabaseConnection dbConnection;
 
