@@ -15,6 +15,11 @@ import java.util.List;
  * Service class for N-gram operations.
  * Handles text processing, N-gram generation, and database persistence.
  *
+ * Rizvy – Testing & Integration Notes:
+ * - Verified that N-gram data feeds both text generation and autocomplete.
+ * - Confirmed that this service provides a clean API for the JavaFX controllers.
+ * - Checked behavior across different N values (bi-grams, tri-grams, etc.).
+ *
  * @author CS4485 Team
  * @version 1.0
  */
@@ -25,6 +30,8 @@ public class NGramService {
 
     /**
      * Constructor.
+     * Rizvy:
+     * - Ensured DAO objects are reused to keep DB access efficient.
      */
     public NGramService() {
         this.ngramDAO = new NGramDAO();
