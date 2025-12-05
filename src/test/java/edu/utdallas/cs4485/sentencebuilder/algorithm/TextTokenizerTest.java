@@ -6,12 +6,54 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for TextTokenizer.
+/******************************************************************************
+ * Text Tokenizer Unit Tests.
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This JUnit 5 test class verifies the behavior of the TextTokenizer utility
+ * that is responsible for low-level text processing in the Sentence Builder
+ * pipeline.
+ *
+ * The tokenizer is a core part of the backend: it converts raw input text
+ * into normalized words and sentences that the Markov and N-gram models
+ * can train on safely.
+ *
+ * The tests cover:
+ *
+ * 1. Word tokenization:
+ *    - Splits input strings into individual words.
+ *    - Ensures basic non-empty behavior and checks for expected tokens.
+ *
+ * 2. Sentence tokenization:
+ *    - Splits input text on '.', '!' and '?' boundaries.
+ *    - Confirms the correct number of sentences for a basic example.
+ *
+ * 3. Normalization:
+ *    - Trims excess whitespace.
+ *    - Converts text to lowercase.
+ *    - Collapses multiple spaces into single spaces.
+ *
+ * 4. Punctuation handling:
+ *    - isPunctuation identifies punctuation-only tokens.
+ *    - isSentenceEnd identifies sentence terminators.
+ *    - removePunctuation strips end punctuation from words.
+ *
+ * 5. Word validity:
+ *    - isValidWord returns true for real words.
+ *    - Returns false for pure punctuation or whitespace-only input.
+ *
+ * 6. Edge cases:
+ *    - tokenization on empty strings should return empty lists.
+ *    - tokenization on null strings should also return empty lists.
+ *
+ * These tests help guarantee that the text-processing layer is stable and
+ * predictable, which is critical for feeding clean data into the database
+ * and generation algorithms.
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project,
+ * "Sentence Builder / Babble", starting October 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
+
 class TextTokenizerTest {
 
     @Test

@@ -1,12 +1,37 @@
 package edu.utdallas.cs4485.sentencebuilder.model;
 
-/**
- * Model class representing the result of text generation.
- * Contains the generated text and metadata about the generation process.
+/******************************************************************************
+ * Generation Result Model
  *
- * @author CS4485 Team
- * @version 1.0
+ * This class is a simple data carrier used by the backend service layer and
+ * the JavaFX UI to describe the result of a single text-generation request.
+ * It bundles the generated text together with metadata about how it was
+ * produced so the UI can display meaningful feedback to the user and the
+ * system can log or analyze generation behavior later.
+ *
+ * The object tracks:
+ *  - The full generated text
+ *  - Which algorithm was used (e.g., first-order, second-order, N-gram)
+ *  - The optional starting word supplied by the user
+ *  - The requested / actual word count
+ *  - How long the generation took in milliseconds
+ *
+ * By packaging all of this into one model instead of passing separate
+ * parameters around, the service and controller code stays cleaner and it
+ * is easier to extend the metadata in the future (for example, to add
+ * temperature, random seed, or corpus information).
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project
+ * "Sentence Builder / Babble", starting Oc 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
+
+/**
+ * Represents the result of generating text from one of the algorithms.
+ * Instances of this class are returned by the service layer and consumed
+ * by the UI so that both the text and its metadata travel together.
  */
+
 public class GenerationResult {
 
     private String generatedText;

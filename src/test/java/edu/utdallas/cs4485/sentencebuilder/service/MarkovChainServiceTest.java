@@ -8,12 +8,33 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for MarkovChainService.
+/******************************************************************************
+ * Markov Chain Service Unit Tests.
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This JUnit 5 test class verifies the behavior of the MarkovChainService,
+ * which is the backend service layer that connects the Markov generation
+ * algorithms to the rest of the application.
+ *
+ * The service is responsible for:
+ *  - Training first-order and second-order Markov models on input text.
+ *  - Tracking which models are currently trained and ready to use.
+ *  - Generating text with or without a specific starting word.
+ *  - Providing autocomplete suggestions based on a given context.
+ *  - Resetting internal state so the service can be retrained.
+ *  - Exposing simple query-style methods (e.g., getStateCount) that the
+ *    UI and higher-level components can call without touching the
+ *    underlying algorithm classes directly.
+ *
+ * These tests focus on end-to-end service behavior rather than the internal
+ * implementation details of the MarkovChainGenerator itself. They treat the
+ * service as a black box: train it, ask it to generate text, and assert that
+ * it returns a well-formed GenerationResult and consistent state flags.
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project,
+ * "Sentence Builder / Babble", starting October 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
+
 class MarkovChainServiceTest {
 
     private MarkovChainService service;
