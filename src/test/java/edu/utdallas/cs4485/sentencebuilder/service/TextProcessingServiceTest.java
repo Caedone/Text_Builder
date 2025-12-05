@@ -7,12 +7,45 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for TextProcessingService.
+/******************************************************************************
+ * Text Processing Service Unit Tests.
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This JUnit 5 test class verifies the behavior of the TextProcessingService,
+ * which provides higher-level text utilities for the backend pipeline.
+ *
+ * While TextTokenizer focuses on low-level token operations, the service
+ * wraps those capabilities and exposes methods that the rest of the system
+ * can call when importing and cleaning raw documents.
+ *
+ * The tests cover:
+ *
+ * 1. Tokenization helpers:
+ *    - tokenizeWords: splits input into word tokens.
+ *    - tokenizeSentences: splits input into sentence chunks.
+ *
+ * 2. Normalization and cleaning:
+ *    - normalizeText: trims whitespace, collapses multiple spaces, and
+ *      converts text to lowercase.
+ *    - cleanText: removes or normalizes problematic whitespace such as
+ *      tabs and extra newlines, producing a smoother string for downstream
+ *      processing.
+ *
+ * 3. Word counting:
+ *    - countWords for regular text.
+ *    - countWords for empty strings (should return zero).
+ *
+ * 4. File format support:
+ *    - isSupportedFileFormat enforces the set of allowed import formats
+ *      (txt, pdf, doc, docx) and rejects unsupported extensions.
+ *
+ * These tests ensure that the text-processing layer behaves predictably and
+ * defensively, which is critical when transforming user-uploaded files into
+ * the normalized text that feeds our database and generation algorithms.
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project,
+ * "Sentence Builder / Babble", starting October 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
 class TextProcessingServiceTest {
 
     private TextProcessingService service;

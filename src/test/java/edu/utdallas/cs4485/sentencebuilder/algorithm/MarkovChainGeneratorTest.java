@@ -7,12 +7,43 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for MarkovChainGenerator.
+/******************************************************************************
+ * Markov Chain Generator Unit Tests.
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This JUnit 5 test class verifies the core behaviors of the
+ * MarkovChainGenerator used by the Sentence Builder application.
+ *
+ * The tests focus on:
+ *  1. Training behavior for first-order and second-order Markov models:
+ *     - After training, the generator should report that it is "trained"
+ *       and should have at least one internal state.
+ *
+ *  2. Basic text generation:
+ *     - Given trained models, the generator should return non-empty strings
+ *       for both first-order and second-order generation requests.
+ *
+ *  3. Starting-word behavior:
+ *     - When a starting word is provided, the generated text should begin
+ *       with that word (case-insensitive check).
+ *
+ *  4. Autocomplete behavior:
+ *     - After training, the generator should return a non-empty list of
+ *       suggestions for a given context word.
+ *
+ *  5. Defensive behavior for invalid input:
+ *     - Training with empty or null text should not mark the generator
+ *       as trained, ensuring that later generation calls do not rely on
+ *       invalid or missing state.
+ *
+ * These tests provide regression coverage for the algorithm layer and help
+ * ensure that changes to the MarkovChainGenerator do not silently break
+ * basic training, generation, or autocomplete functionality.
+ *
+ * Written by Johnathan Pedraza & Team 37 for CS4485.0W1, capstone project,
+ * Test documentation and refinements by Johnathan Pedraza.
+ * NetID: jxp220060
+ ******************************************************************************/
+
 class MarkovChainGeneratorTest {
 
     private MarkovChainGenerator firstOrderGenerator;

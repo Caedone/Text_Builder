@@ -7,12 +7,63 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for NGramGenerator.
+/******************************************************************************
+ * N-gram Generator Unit Tests.
  *
- * @author CS4485 Team
- * @version 1.0
- */
+ * This JUnit 5 test class verifies the behavior of the NGramGenerator used
+ * by the Sentence Builder application for variable-order N-gram text
+ * generation (bigram, trigram, etc.).
+ *
+ * The tests cover several categories:
+ *
+ * 1. Constructor validation:
+ *    - Accepts valid N values (e.g., 1 through 5).
+ *    - Rejects invalid N values (zero or negative) with an exception.
+ *
+ * 2. Training behavior:
+ *    - Training with a non-empty corpus should mark the generator as trained
+ *      and produce a positive state count.
+ *    - Training with empty or null text should not mark the generator as
+ *      trained, and the internal state count should remain zero.
+ *
+ * 3. Text generation:
+ *    - Generating text with a random start should return a non-empty string
+ *      with a bounded word count.
+ *    - Generating text with a specific starting context (e.g., "the") should
+ *      produce text that begins with that context (case-insensitive).
+ *    - Both bigram (N=2) and trigram (N=3) generators are exercised.
+ *
+ * 4. Autocomplete behavior:
+ *    - getAutoCompleteSuggestions should return at most the requested number
+ *      of suggestions and handle both single-word and multi-word contexts.
+ *    - An empty context should return an empty suggestion list, so the
+ *      caller can safely detect "no context" scenarios.
+ *
+ * 5. State inspection and lifecycle:
+ *    - isTrained and getStateCount expose whether the model has usable
+ *      internal state after training.
+ *    - getStatistics returns a non-empty summary string that includes
+ *      details like the N value and the number of unique N-grams.
+ *    - clear resets the internal model so it can be retrained from scratch.
+ *
+ * 6. Multiple training calls:
+ *    - Re-training with additional text should maintain or increase the
+ *      internal state count, not reduce it unexpectedly.
+ *
+ * 7. Generation consistency:
+ *    - Multiple generations with the same starting context should always
+ *      respect that context, even if the actual generated sequences differ
+ *      due to randomness.
+ *
+ * These tests provide safety nets around the N-gram algorithm so that future
+ * changes or optimizations do not silently break core training, generation,
+ * or autocomplete behavior.
+ *
+ * Written by Johnathan Pedraza for CS4485.0W1, capstone project,
+ * "Sentence Builder / Babble", starting October 2025.
+ * NetID: jxp220060
+ ******************************************************************************/
+
 class NGramGeneratorTest {
 
     private NGramGenerator bigramGenerator;
