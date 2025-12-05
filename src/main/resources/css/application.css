@@ -1,4 +1,29 @@
-/* Sentence Builder Application Styles */
+/******************************************************************************
+ * Sentence Builder Application - Main Stylesheet
+ *
+ * This CSS file provides the visual styling for the Sentence Builder JavaFX
+ * application. It defines a consistent look and feel across all user interface
+ * components including buttons, text fields, tables, and other controls.
+ *
+ * The stylesheet includes:
+ * - Root application styles defining the base font family and colors
+ * - Button styles including standard buttons and specialized delete buttons
+ *   with hover and pressed states for visual feedback
+ * - Text input styles (TextField and TextArea) with focus indicators
+ * - Table view styling for displaying word and word pair data
+ * - Tab pane styles for the main navigation interface
+ * - Progress bar styling for file import operations
+ * - Form control styles (labels, radio buttons, sliders)
+ * - Menu bar styling for the application menu
+ *
+ * The color scheme uses a blue (#4a90e2) as the primary accent color for
+ * interactive elements, with red (#e74c3c) for destructive actions like delete.
+ * This creates a professional and intuitive user interface that clearly
+ * distinguishes between different types of actions.
+ *
+ * Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2025.
+ *    NetID: CSE220000
+ ******************************************************************************/
 
 /* Root styles */
 .root {

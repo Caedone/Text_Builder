@@ -1,3 +1,36 @@
+/******************************************************************************
+ * Configuration Manager Utility
+ *
+ * This class manages application and database configuration settings loaded
+ * from properties files. It implements the Singleton design pattern to ensure
+ * only one instance exists throughout the application lifecycle.
+ *
+ * The ConfigurationManager provides centralized access to configuration data
+ * stored in two separate properties files:
+ * 1. application.properties - General application settings
+ * 2. database.properties - Database connection and configuration settings
+ *
+ * Key Features:
+ * - Singleton pattern ensures consistent configuration across all components
+ * - Loads properties files from the classpath at initialization
+ * - Provides type-safe getter methods for different data types (String, int, boolean)
+ * - Supports default values to prevent null pointer exceptions
+ * - Separates application and database properties for better organization
+ *
+ * This centralized configuration approach allows easy modification of settings
+ * without recompiling code. It's particularly useful for:
+ * - Database connection strings and credentials
+ * - File size limits and import settings
+ * - UI preferences and default values
+ * - Feature flags and operational parameters
+ *
+ * The class uses lazy initialization in getInstance() to defer object creation
+ * until first use, and synchronized access to prevent race conditions in
+ * multi-threaded environments.
+ *
+ * Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2025.
+ *    NetID: CSE220000
+ ******************************************************************************/
 package edu.utdallas.cs4485.sentencebuilder.util;
 
 import java.io.IOException;

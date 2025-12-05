@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* Sentence Builder Application - Main View Layout
+*
+* This FXML file defines the main application window layout for the Sentence
+* Builder application. It serves as the primary container and navigation hub
+* for the entire user interface.
+*
+* The layout consists of two main sections:
+* 1. Menu Bar - Located at the top of the window, providing:
+*    - File menu with Exit option for closing the application
+*    - Help menu with About option for application information
+*
+* 2. Tab Pane - The main content area containing three tabs:
+*    - Text Generator: Interface for generating text using Markov chains and
+*      N-gram algorithms, including autocomplete functionality
+*    - File Import: Interface for importing text files into the database and
+*      viewing import history
+*    - Database View: Interface for viewing and managing stored words and
+*      word pairs in the underlying database
+*
+* Each tab includes a separate FXML file (text-generator.fxml, file-import.fxml,
+* and database-view.fxml) to maintain modularity and separation of concerns.
+* The tabs are non-closable to ensure all functionality remains accessible.
+*
+* This layout is controlled by MainController.java which handles menu actions
+* and overall application lifecycle events.
+*
+* Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2025.
+*    NetID: CSE220000
+*******************************************************************************
+-->
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>

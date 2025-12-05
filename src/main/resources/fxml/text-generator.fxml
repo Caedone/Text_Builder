@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* Sentence Builder Application - Text Generator View
+*
+* This FXML file defines the user interface for the text generation functionality
+* of the Sentence Builder application. It allows users to generate text using
+* different algorithms based on patterns learned from imported text files.
+*
+* The interface is organized into several functional sections:
+*
+* 1. Algorithm Selection - Radio buttons allowing users to choose between:
+*    - First-Order Markov Chain: Generates text based on single word transitions
+*    - Second-Order Markov Chain: Generates text based on two-word sequences
+*    - N-gram: Generates text using configurable N-gram sizes
+*
+* 2. Generation Parameters:
+*    - Start Word field: Optional text field to specify the first word of
+*      generated text (leaving blank selects a random starting word)
+*    - N Value slider: Controls the N-gram size (1-5) when N-gram algorithm
+*      is selected, determining context length
+*    - Max Words slider: Sets the maximum length of generated text (10-200 words)
+*
+* 3. Action Buttons:
+*    - Generate: Triggers text generation with current settings
+*    - Clear: Clears the output area
+*    - Copy to Clipboard: Copies generated text for use in other applications
+*
+* 4. Auto-Complete Section:
+*    - Input field for typing partial text
+*    - Suggestion list showing probable next words based on the current context
+*    - Buttons to append selected suggestions or clear the autocomplete field
+*    This feature demonstrates the predictive capabilities of the trained models
+*
+* 5. Output Area:
+*    - Large text area displaying the generated text
+*    - Read-only to prevent accidental modifications
+*    - Scrollable for viewing longer generated passages
+*
+* 6. Status Label:
+*    - Displays feedback about generation progress and any errors
+*
+* This view is controlled by TextGeneratorController.java which implements
+* the generation algorithms and handles all user interactions.
+*
+* Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2024.
+*    NetID: CSE220000
+*******************************************************************************
+-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>

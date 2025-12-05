@@ -1,4 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* Sentence Builder Application - Database View
+*
+* This FXML file defines the user interface for viewing and managing the
+* underlying database content in the Sentence Builder application. It provides
+* direct access to the statistical data that powers the text generation
+* algorithms.
+*
+* The interface is organized into the following components:
+*
+* 1. Search and Action Controls:
+*    - Search field for filtering displayed data by word text
+*    This allows quick lookup of specific words or patterns in large datasets
+*    - Refresh button to reload data from the database
+*    Useful for viewing changes after imports or data modifications
+*    - Recalculate Probabilities button to rebuild transition probability data
+*    This recalculates the statistical weights used by Markov chain algorithms
+*    based on current word frequency counts
+*
+* 2. Status Label:
+*    - Displays feedback about database operations and any errors
+*    - Uses gray text to distinguish from main content
+*
+* 3. Tabbed Data Views:
+*    The main content area contains two tabs for different data types:
+*
+*    a) Words Tab:
+*       - Displays individual word statistics in a table
+*       - Columns:
+*         * Word: The actual word text
+*         * Total Count: Number of times word appears in all imported texts
+*         * Start Count: How often word appears at sentence beginnings
+*         * End Count: How often word appears at sentence endings
+*       These counts are essential for first-order Markov chain generation
+*       and for selecting appropriate starting and ending words
+*
+*    b) Word Pairs Tab:
+*       - Displays word transition data for second-order Markov chains
+*       - Columns:
+*         * First Word: The preceding word in the pair
+*         * Second Word: The following word in the pair
+*         * Count: Number of times this transition occurs
+*         * Probability: Calculated likelihood of this transition
+*       This data shows which words commonly follow other words, forming
+*       the basis for second-order Markov chain text generation
+*
+* Both tabs are non-closable to ensure access to all data types. The tables
+* grow vertically to utilize available space efficiently. This view is
+* controlled by DatabaseViewController.java which handles data retrieval,
+* searching, and probability calculations.
+*
+* Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2024.
+*    NetID: CSE220000
+*******************************************************************************
+-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>

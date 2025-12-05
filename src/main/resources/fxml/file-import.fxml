@@ -1,4 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+*******************************************************************************
+* Sentence Builder Application - File Import View
+*
+* This FXML file defines the user interface for importing text files into the
+* Sentence Builder application's database. It processes text files to extract
+* words, word pairs, and N-grams for later use in text generation.
+*
+* The interface provides the following functionality:
+*
+* 1. File Selection Section:
+*    - Text field displaying the currently selected file path
+*    - Browse button that opens a file chooser dialog for selecting text files
+*    The application can import various text formats for processing
+*
+* 2. Processing Options:
+*    - Checkbox to enable/disable N-gram processing during import
+*    This option allows users to skip N-gram extraction if only Markov chain
+*    generation will be used, improving import performance for large files
+*
+* 3. N-gram Configuration:
+*    - N Value slider (2-5) to set the size of N-grams to extract
+*    - Label showing current N value
+*    This determines how many consecutive words are grouped together for
+*    analysis, affecting the context awareness of generated text
+*
+* 4. Import Controls:
+*    - Import button to begin processing the selected file
+*    - Progress bar showing real-time import progress
+*    The progress bar provides feedback during potentially long import operations
+*
+* 5. Status Display:
+*    - Label showing current operation status and any error messages
+*    - Wraps text to display longer status messages
+*
+* 6. Import History Table:
+*    - Displays previously imported files with their metadata
+*    - Columns include: Filename, File Location, Word Count, Status, Import Date
+*    - Delete Selected button to remove files and their associated data from
+*      the database (uses distinct red styling to indicate destructive action)
+*    - Allows users to track what data is in the system and manage storage
+*
+* The table grows vertically to fill available space, ensuring visibility of
+* import history even with many files. This view is controlled by
+* FileImportController.java which handles file reading, database operations,
+* and UI updates.
+*
+* Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2024.
+*    NetID: CSE220000
+*******************************************************************************
+-->
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
