@@ -1,33 +1,22 @@
-/******************************************************************************
- * WordPair Model Class
- *
- * This class represents a word-to-word transition used in Markov chain text
- * generation. It stores the IDs of two consecutive words along with frequency
- * and probability data that describe how often one word follows another.
- *
- * Key functionality includes:
- * 1. Transition Data:
- *    - Tracks transition counts and calculated probabilities.
- *
- * 2. Database + UI Support:
- *    - Includes IDs, timestamps, and optional word text for display.
- *
- * Used by the Markov generator to build first-order transition models.
- *
- * Written by Bhaskar Atmakuri for CS4485.0W1, capstone project, starting October 2025.
- * NetID: BXA210025
- ******************************************************************************/
-
 package edu.utdallas.cs4485.sentencebuilder.model;
 
 import java.sql.Timestamp;
 
 /**
- * Model class representing a word pair (transition) in the database.
- * Used for Markov chain generation.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Model class representing a word-to-word transition relationship used in
+ * Markov chain text generation algorithms.
+ *
+ * Each WordPair stores the database IDs of two consecutive words along with
+ * transition frequency counts and calculated probabilities that describe how
+ * often the second word follows the first in the source texts. This forms the
+ * foundation of first-order Markov chain models.
+ *
+ * Includes optional word text fields for UI display purposes and database
+ * timestamps for tracking creation and updates. The Markov generator uses
+ * these pairs to build probabilistic transition models for text generation.
+ *
+ * @author Bhaskar Atmakuri
  */
 public class WordPair {
 

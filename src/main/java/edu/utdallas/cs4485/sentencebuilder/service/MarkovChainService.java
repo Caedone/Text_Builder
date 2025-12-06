@@ -11,16 +11,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Service class for Markov chain text generation.
- * Coordinates between the algorithm and the UI/database layers.
  *
- * Rizvy – Integration & Testing Notes:
- * - Confirmed that both generators load database data only once for performance.
- * - Verified that UI generation calls behave consistently based on algorithm type.
- * - Validated safe handling of invalid or missing start words.
+ * Service class orchestrating Markov chain text generation between the algorithm
+ * layer, database, and user interface.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Manages both first-order and second-order MarkovChainGenerator instances, loading
+ * database word and word pair data efficiently (only once for performance). Provides
+ * a clean API for UI generation calls, allowing users to select algorithm type via
+ * radio buttons or dropdowns and generate text with specified parameters.
+ *
+ * Handles training on imported text, coordinating with WordDAO and WordPairDAO to
+ * persist learned relationships. Implements safe handling of invalid or missing
+ * start words, ensuring consistent behavior across different algorithm configurations.
+ *
+ * @author Manraj Singh
+ * @author Rahman-Danish, Rizvy
  */
 public class MarkovChainService {
 

@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import edu.utdallas.cs4485.sentencebuilder.model.Word;
@@ -19,11 +15,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
- * Controller for the database view tab. Displays words and word pairs from the
- * database.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Controller for the database visualization interface. This class manages the display
+ * and interaction with stored word statistics and relationship data in tabular format.
+ *
+ * Provides two main views: a Words table showing individual word statistics including
+ * total occurrence count, start-of-sentence count, and end-of-sentence count; and a
+ * Word Pairs table showing word transition relationships with occurrence counts and
+ * calculated probabilities for Markov chain analysis.
+ *
+ * Users can search and filter the displayed data, refresh the tables to see updated
+ * information, and examine the underlying statistical model that drives text generation.
+ * This view helps users understand how the system learned from their imported texts.
+ *
+ * @author Bhaskar Atmakuri
  */
 public class DatabaseViewController {
 

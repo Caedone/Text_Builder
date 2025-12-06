@@ -3,11 +3,20 @@ package edu.utdallas.cs4485.sentencebuilder.algorithm;
 import java.util.*;
 
 /**
- * Implements weighted random selection for Markov chain generation.
- * Selects items based on their probability weights.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Utility class implementing weighted random selection for probabilistic decision
+ * making in Markov chain and N-gram text generation.
+ *
+ * Provides a generic weighted selection mechanism where items are chosen with
+ * probability proportional to their assigned weights. This enables the generation
+ * algorithms to favor more frequent word transitions while still allowing less
+ * common alternatives, creating more natural and varied output.
+ *
+ * Supports both random and seeded operation for reproducible results during testing.
+ * Uses efficient cumulative probability distribution for O(n) selection time where
+ * n is the number of candidate items.
+ *
+ * @author Caedon Ewing
  */
 public class WeightedRandomSelector<T> {
 

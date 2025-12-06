@@ -1,18 +1,23 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 
 /**
- * Main controller for the application. Manages the main window and tab
- * navigation.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Main controller for the Sentence Builder application. This class serves as the
+ * central coordinator for the JavaFX user interface, managing the primary window
+ * and navigation between different functional tabs.
+ *
+ * The controller handles the main TabPane that contains all feature tabs including
+ * file import, text generation, and database viewing. It also manages global menu
+ * actions such as application exit and help dialogs.
+ *
+ * This is the first controller loaded when the application starts and coordinates
+ * the overall user experience across different application features.
+ *
+ * @author Johnathan Pedraza
+ * @author Rahman-Danish, Rizvy
  */
 public class MainController {
 

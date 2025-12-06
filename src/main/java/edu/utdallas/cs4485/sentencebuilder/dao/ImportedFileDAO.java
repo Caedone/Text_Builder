@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
 import java.sql.Connection;
@@ -16,11 +12,19 @@ import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile;
 import edu.utdallas.cs4485.sentencebuilder.model.ImportedFile.FileStatus;
 
 /**
- * Data Access Object for ImportedFile entities. Handles all database operations
- * for imported files.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Data Access Object for ImportedFile entities. Tracks metadata and processing
+ * status of text files imported into the system for analysis.
+ *
+ * Maintains records of all imported files including file paths, processing status,
+ * word counts, and any error messages encountered during import. This enables the
+ * system to track import history, avoid duplicate processing, and display import
+ * status to users.
+ *
+ * Supports querying files by status, retrieving import history, and updating
+ * processing results as files are analyzed and loaded into the database.
+ *
+ * @author Manraj Singh
  */
 public class ImportedFileDAO {
 

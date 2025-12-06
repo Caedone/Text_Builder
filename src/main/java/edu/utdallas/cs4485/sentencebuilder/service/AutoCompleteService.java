@@ -12,11 +12,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Service class for autocomplete functionality.
- * Provides word suggestions based on context using database queries.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Service class providing intelligent autocomplete functionality with context-aware
+ * word suggestions based on database-stored word relationships.
+ *
+ * Leverages word frequency data, word pairs, and N-gram sequences to generate
+ * relevant suggestions as users type in the UI. Supports first-order (single word
+ * context), second-order (two word context), and higher-order N-gram contexts for
+ * increasingly sophisticated predictions.
+ *
+ * DAO initialization occurs once during construction to maintain fast response times
+ * during user typing interactions. Queries are optimized to return ranked suggestions
+ * based on transition probabilities and frequency statistics from the learned corpus.
+ *
+ * @author Bhaskar Atmakuri
+ * @author Rahman-Danish, Rizvy
  */
 public class AutoCompleteService {
 

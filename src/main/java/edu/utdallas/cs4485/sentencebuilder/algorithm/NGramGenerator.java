@@ -3,11 +3,21 @@ package edu.utdallas.cs4485.sentencebuilder.algorithm;
 import java.util.*;
 
 /**
- * Implements N-gram based text generation.
- * Supports variable N values for different context lengths.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Algorithm implementing N-gram based text generation with configurable context
+ * window lengths for sophisticated pattern matching.
+ *
+ * Extends basic Markov chain concepts by using sequences of N consecutive words
+ * as context for predicting the next word. Supports variable N values (typically
+ * 2-5) allowing users to balance between creative diversity (lower N) and closer
+ * adherence to source text patterns (higher N).
+ *
+ * Trains on input text to build N-gram sequence maps, tracking both individual
+ * word starters and complete N-gram starters for sentence generation. Implements
+ * fallback strategies when exact N-gram matches aren't found, ensuring robust
+ * text generation across diverse inputs and generation parameters.
+ *
+ * @author Manraj Singh
  */
 public class NGramGenerator {
 

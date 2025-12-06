@@ -1,12 +1,5 @@
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
-/**
- *
- * Written by Manraj Singh for CS Project, starting Oct 28, 2025. NetID:
- * mxs220007 Drastically improves performance since we don't have to create a
- * new connection every time Hikari will work alongside java.sql - not replace
- * it.
- */
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -17,11 +10,20 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 /**
- * Manages database connections using HikariCP connection pool. Implements
- * singleton pattern.
+ *
+ * Manages database connection pooling using HikariCP for optimal performance.
+ * This class implements the singleton pattern to provide a centralized point
+ * for database connectivity across the application.
+ *
+ * HikariCP connection pooling drastically improves performance by reusing database
+ * connections rather than creating new connections for each operation. The pool
+ * configuration is loaded from database.properties file and manages connection
+ * lifecycle automatically.
+ *
+ * This implementation works alongside java.sql standard interfaces while providing
+ * enterprise-grade connection management and performance optimizations.
  *
  * @author Manraj Singh
- * @version 1.0
  */
 public class DatabaseConnection {
 

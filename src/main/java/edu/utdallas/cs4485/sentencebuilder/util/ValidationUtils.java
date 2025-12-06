@@ -1,51 +1,25 @@
-/******************************************************************************
- * Input Validation Utility
- *
- * This utility class provides static methods for validating user input and
- * data throughout the Sentence Builder application. It centralizes validation
- * logic to ensure consistency and reduce code duplication.
- *
- * The class provides several categories of validation:
- *
- * 1. String Validation:
- *    - Checks for null and empty strings (isNotEmpty)
- *    - Validates string length within specified bounds (isValidLength)
- *    - Verifies strings contain only alphanumeric characters (isAlphanumeric)
- *    - Ensures strings contain only letters for valid words (isValidWord)
- *    These validations are critical for processing text input from files and
- *    user-entered search queries and start words.
- *
- * 2. Numeric Range Validation:
- *    - Validates integers are within acceptable ranges (isInRange for int)
- *    - Validates doubles are within acceptable ranges (isInRange for double)
- *    These are used to validate slider values for N-gram sizes and word counts,
- *    ensuring parameters stay within algorithmically sound ranges.
- *
- * Purpose and Design Rationale:
- * By centralizing validation logic, we achieve several benefits:
- * - Consistency: All parts of the application use the same validation rules
- * - Maintainability: Changing a validation rule only requires updating one location
- * - Testability: Validation logic can be unit tested independently
- * - Readability: Controller and service code is cleaner with validation extracted
- *
- * All methods are static because this is a stateless utility class. Each method
- * is designed to be pure (no side effects) and returns boolean results that are
- * easy to use in conditional logic.
- *
- * The validation methods are defensive, handling null inputs gracefully by
- * returning false rather than throwing NullPointerExceptions. This makes the
- * calling code simpler and more robust.
- *
- * Written by Caedon Ewing for CS4485.0W1, capstone project, starting October 2025.
- *    NetID: CSE220000
- ******************************************************************************/
 package edu.utdallas.cs4485.sentencebuilder.util;
 
 /**
- * Utility class for input validation.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Static utility class centralizing validation logic for user input and data
+ * throughout the application to ensure consistency and reduce code duplication.
+ *
+ * Provides string validation (null/empty checks, length bounds, alphanumeric and
+ * letter-only verification) critical for processing file text input, search queries,
+ * and start words. Also offers numeric range validation for integers and doubles,
+ * used to validate slider values for N-gram sizes and word counts within
+ * algorithmically sound ranges.
+ *
+ * Centralizing validation achieves multiple benefits: consistent rules across all
+ * components, easy maintainability with single-location updates, independent unit
+ * testing, and cleaner controller/service code. All methods are stateless, pure
+ * functions returning booleans for simple conditional usage.
+ *
+ * Validation methods handle null inputs gracefully by returning false rather than
+ * throwing exceptions, making calling code simpler and more robust.
+ *
+ * @author Caedon Ewing
  */
 public class ValidationUtils {
 

@@ -13,7 +13,15 @@
       "Bash(src/main/java/edu/utdallas/cs4485/sentencebuilder/service/TextProcessingService.java )",
       "Bash(src/main/java/edu/utdallas/cs4485/sentencebuilder/service/MarkovChainService.java )",
       "Bash(src/main/java/edu/utdallas/cs4485/sentencebuilder/model/Word.java )",
-      "Bash(src/main/java/edu/utdallas/cs4485/sentencebuilder/SentenceBuilderApplication.java)"
+      "Bash(src/main/java/edu/utdallas/cs4485/sentencebuilder/SentenceBuilderApplication.java)",
+      "Bash(mvn clean compile:*)",
+      "Bash(mvn test)",
+      "Bash(mysql:*)",
+      "Bash(mvn test:*)",
+      "Bash(chmod:*)",
+      "Bash(./stress-test.sh:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

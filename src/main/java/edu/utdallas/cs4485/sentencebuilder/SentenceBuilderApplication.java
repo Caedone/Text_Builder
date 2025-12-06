@@ -8,11 +8,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Main application class for Sentence Builder.
- * Uses JavaFX for the user interface and implements Markov chain text generation.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Main application entry point for Sentence Builder, a JavaFX-based text generation
+ * application using Markov chain and N-gram algorithms.
+ *
+ * Extends JavaFX Application to bootstrap the user interface, loading the main FXML
+ * view and establishing the primary stage with configured dimensions and styling.
+ * Initializes the application window with title, minimum size constraints, and CSS
+ * stylesheet for consistent visual presentation.
+ *
+ * Manages application lifecycle including startup (loading FXML and resources) and
+ * shutdown (cleaning up database connections and resources). Serves as the launch
+ * point for the entire application, coordinating between the JavaFX framework and
+ * the custom controllers, services, and algorithms that implement text generation
+ * functionality.
+ *
+ * @author Caedon Ewing
  */
 public class SentenceBuilderApplication extends Application {
 

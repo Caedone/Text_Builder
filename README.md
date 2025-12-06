@@ -1,115 +1,150 @@
+# Sentence Builder - Markov Chain Text Generator
 
-## Technologies Used
+**CS4485 Senior Capstone Project**
+**University of Texas at Dallas**
+**Fall 2025**
 
-- **Java 11**: Core programming language
-- **JavaFX 17**: User interface framework
-- **MySQL 8.0**: Database for storing words and word pairs
-- **Maven**: Build automation and dependency management
-- **HikariCP**: Database connection pooling
-- **JUnit 5**: Unit testing framework
+---
+
+## Team Members
+
+- **Manraj Singh** (mxs220007)
+- **Johnathan Pedraza** (jxp220060)
+- **Caedon Ewing** (CSE220000)
+- **Bhaskar Atmakuri** (BXA210025)
+- **Rahman-Danish, Rizvy**
+
+---
+
+## Project Overview
+
+Sentence Builder is a JavaFX-based desktop application that leverages Markov chain algorithms and N-gram models to generate coherent text based on imported training corpora. The system analyzes statistical patterns in text files to learn word relationships and transition probabilities, then uses this learned model to generate novel sentences that maintain the stylistic characteristics of the source material.
+
+This project demonstrates the practical application of probabilistic text generation, database design, user interface development, and software engineering principles in a complete end-to-end application.
+
+---
 
 ## Features
 
-- **Text Import**: Import text files to train the Markov chain model
-- **Text Generation**: Generate sentences using first-order or second-order Markov chains
-- **Auto-Complete**: Get word suggestions based on current context
-- **Database Persistence**: Store and retrieve word statistics and transitions
-- **File Management**: Track imported files and their processing status
-- **Visual Interface**: User-friendly JavaFX interface for all operations
+### Core Functionality
+- **Multiple Text Generation Algorithms**
+  - First-order Markov chains (single word context)
+  - Second-order Markov chains (two word context)
+  - Configurable N-gram generation (N=2 through N=5)
+
+- **Intelligent Text Processing**
+  - Automatic tokenization and text normalization
+  - Sentence boundary detection
+  - Word frequency and position tracking
+  - Support for multiple file formats (TXT, PDF, DOC, DOCX)
+
+- **Database Integration**
+  - Persistent storage of word statistics and relationships
+  - Efficient HikariCP connection pooling
+  - Import history tracking with status monitoring
+  - Optimized queries for real-time text generation
+
+- **User Interface**
+  - Intuitive JavaFX-based graphical interface
+  - Real-time autocomplete suggestions
+  - Database browser for exploring learned patterns
+  - Progress indicators for long-running operations
+  - File import validation and error handling
+
+---
 
 ## Project Structure
 
 ```
-sentence-builder/
-├── database/              # Database schema and sample data
-├── docs/                  # Documentation
+Text_Builder/
+├── database/
+│   ├── schema.sql              # Database table definitions
+│   ├── sample-data.sql         # Sample training data
+│   └── README.md               # Database setup guide
+├── docs/
+│   ├── design-document.md      # System architecture
+│   ├── user-manual.md          # End-user documentation
+│   └── database-schema.md      # Schema documentation
 ├── src/
 │   ├── main/
-│   │   ├── java/         # Application source code
-│   │   │   └── edu/utdallas/cs4485/sentencebuilder/
-│   │   │       ├── controller/      # JavaFX controllers
-│   │   │       ├── model/           # Data models
-│   │   │       ├── service/         # Business logic
-│   │   │       ├── dao/             # Database access
-│   │   │       ├── algorithm/       # Markov chain implementation
-│   │   │       └── util/            # Utility classes
-│   │   └── resources/    # FXML, CSS, properties files
-│   └── test/             # Unit tests
-├── pom.xml               # Maven configuration
-└── README.md
+│   │   ├── java/edu/utdallas/cs4485/sentencebuilder/
+│   │   │   ├── algorithm/      # Markov chain & N-gram implementations
+│   │   │   ├── controller/     # JavaFX UI controllers
+│   │   │   ├── dao/            # Database access objects
+│   │   │   ├── model/          # Data transfer objects
+│   │   │   ├── service/        # Business logic layer
+│   │   │   └── util/           # Helper utilities
+│   │   └── resources/
+│   │       ├── css/            # Stylesheets
+│   │       ├── fxml/           # UI layouts
+│   │       └── *.properties    # Configuration files
+│   └── test/
+│       └── java/               # JUnit test suites
+├── test-files/                 # Sample text corpora
+├── pom.xml                     # Maven build configuration
+└── README.md                   # This file
 ```
 
-## Prerequisites
+---
 
-- **Java Development Kit (JDK) 11 or higher**
-- **Maven 3.6 or higher**
-- **MySQL 8.0 or higher**
-- **JavaFX 17** (included as Maven dependency)
+## Installation Instructions
 
-## Installation
-
-1. **Clone the repository** (when ready):
-   ```bash
-   git clone [repository-url]
-   cd sentence-builder
-   ```
-
-2. **Set up the database**:
-   ```bash
-   mysql -u root -p < database/schema.sql
-   mysql -u root -p < database/sample-data.sql
-   ```
-
-3. **Configure database connection**:
-   - Edit `src/main/resources/database.properties`
-   - Update `db.username` and `db.password` with your MySQL credentials
-
-4. **Build the project**:
-   ```bash
-   mvn clean install
-   ```
-
-5. **Run the application**:
-   ```bash
-   mvn javafx:run
-   ```
-
-## Usage
-
-1. **Import Text Files**: Use the File Import interface to load text files for training
-2. **Generate Text**: Select the algorithm type and starting word to generate sentences
-3. **View Database**: Browse stored words and word pairs
-4. **Auto-Complete**: Type a word to see suggestions based on the trained model
-
-## Development
-
-### Building
+### 1. Extract the Project
+After extracting the ZIP file, navigate to the project directory:
 ```bash
+cd Text_Builder
+```
+
+### 2. Database Setup
+
+Start your MySQL server and execute the following commands:
+
+```bash
+# Create the database and tables
+mysql -u root -p < database/schema.sql
+
+# (Optional) Load sample training data
+mysql -u root -p < database/sample-data.sql
+```
+
+### 3. Configure Database Connection
+
+Edit `src/main/resources/database.properties` with your MySQL credentials:
+
+```properties
+db.url=jdbc:mysql://localhost:3306/sentence_builder?useSSL=false&serverTimezone=UTC
+db.username=YOUR_USERNAME
+db.password=YOUR_PASSWORD
+```
+
+**Note**: Never commit this file with real credentials to version control.
+
+### 4. Build the Application
+
+Using Maven, compile and package the application:
+
+```bash
+# Clean and compile
 mvn clean compile
-```
 
-### Running Tests
-```bash
+# Run unit tests (optional but recommended)
 mvn test
-```
 
-### Packaging
-```bash
+# Package the application
 mvn package
 ```
 
-### Running from JAR
+### 5. Run the Application
+
+Launch the application using Maven:
+
+```bash
+mvn javafx:run
+```
+
+Alternatively, run the packaged JAR file:
+
 ```bash
 java -jar target/sentence-builder-1.0-SNAPSHOT.jar
 ```
 
-## Documentation
-
-See the `docs/` directory for additional documentation:
-- Design Document
-- Database Schema Details
-- User Manual
-
-## License
-
-This project is created for educational purposes as part of CS4485 at UT Dallas.

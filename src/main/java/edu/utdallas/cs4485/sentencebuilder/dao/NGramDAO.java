@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
 import java.sql.Connection;
@@ -15,11 +11,20 @@ import java.util.List;
 import edu.utdallas.cs4485.sentencebuilder.model.NGram;
 
 /**
- * Data Access Object for NGram entities. Handles all database operations for
- * N-grams.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Data Access Object for NGram entities. Manages storage and retrieval of
+ * variable-length word sequences (N-grams) used for advanced text generation.
+ *
+ * N-grams represent sequences of N consecutive words and their following word
+ * transitions. This enables context-aware text generation with configurable
+ * sequence lengths (N=2 through N=5), providing more sophisticated pattern
+ * matching than simple word pairs.
+ *
+ * Handles insertion, updates, and queries for N-gram data including transition
+ * counts and probabilities. Supports filtering by N value and sequence matching
+ * for generation algorithms.
+ *
+ * @author Caedon Ewing
  */
 public class NGramDAO {
 

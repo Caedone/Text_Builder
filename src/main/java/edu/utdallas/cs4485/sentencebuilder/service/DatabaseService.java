@@ -12,16 +12,22 @@ import edu.utdallas.cs4485.sentencebuilder.model.Word;
 import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
 
 /**
- * Service class for database operations. Coordinates between DAOs and provides
- * transaction management.
  *
- * Rizvy – Testing Notes:
- * - Verified DAO interactions over full UI workflow (import → parse → save).
- * - Confirmed that service methods expose clean API for controllers.
- * - Ensured safe fallback behavior for missing words or pairs.
+ * Service class coordinating database operations across multiple DAOs and
+ * providing transaction management for the application.
  *
- * @author CS4485 Team
- * @version 1.0
+ * This service acts as a facade over the data access layer, exposing a clean
+ * API for controllers to save and retrieve words, word pairs, and imported file
+ * records. It manages DAO instances and database connections, ensuring consistent
+ * behavior across the full UI workflow from file import through parsing to storage.
+ *
+ * Provides safe fallback behavior for missing or invalid data, coordinating between
+ * WordDAO, WordPairDAO, and ImportedFileDAO to maintain data integrity. All database
+ * operations flow through this service to centralize error handling and transaction
+ * logic.
+ *
+ * @author Bhaskar Atmakuri
+ * @author Rahman-Danish, Rizvy
  */
 public class DatabaseService {
 

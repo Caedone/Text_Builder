@@ -1,35 +1,22 @@
 package edu.utdallas.cs4485.sentencebuilder.model;
 
-/******************************************************************************
- * Generation Result Model
- *
- * This class is a simple data carrier used by the backend service layer and
- * the JavaFX UI to describe the result of a single text-generation request.
- * It bundles the generated text together with metadata about how it was
- * produced so the UI can display meaningful feedback to the user and the
- * system can log or analyze generation behavior later.
- *
- * The object tracks:
- *  - The full generated text
- *  - Which algorithm was used (e.g., first-order, second-order, N-gram)
- *  - The optional starting word supplied by the user
- *  - The requested / actual word count
- *  - How long the generation took in milliseconds
- *
- * By packaging all of this into one model instead of passing separate
- * parameters around, the service and controller code stays cleaner and it
- * is easier to extend the metadata in the future (for example, to add
- * temperature, random seed, or corpus information).
- *
- * Written by Johnathan Pedraza for CS4485.0W1, capstone project
- * "Sentence Builder / Babble", starting Oc 2025.
- * NetID: jxp220060
- ******************************************************************************/
-
 /**
- * Represents the result of generating text from one of the algorithms.
- * Instances of this class are returned by the service layer and consumed
- * by the UI so that both the text and its metadata travel together.
+ *
+ * Data transfer object encapsulating the result of a text generation request
+ * along with metadata about how the text was produced.
+ *
+ * This class bundles the generated text with contextual information including
+ * the algorithm used (first-order Markov, second-order Markov, or N-gram),
+ * optional starting word supplied by the user, actual word count produced,
+ * and generation duration in milliseconds.
+ *
+ * By packaging all generation metadata into a single model, the service and
+ * controller code remains clean and extensible. The JavaFX UI uses this to
+ * display meaningful feedback to users, and the system can log or analyze
+ * generation behavior. Future extensions might include temperature, random
+ * seed, or corpus information.
+ *
+ * @author Johnathan Pedraza
  */
 
 public class GenerationResult {

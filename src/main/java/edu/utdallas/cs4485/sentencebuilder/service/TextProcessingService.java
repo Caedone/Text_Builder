@@ -8,15 +8,22 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Service class for text processing operations.
- * Handles file reading, tokenization, and text normalization.
  *
- * Rizvy – Integration & Testing Notes:
- * - Verified that this service supports all frontend file import workflows.
- * - Confirmed behavior across TXT files and observed proper fallback for unsupported formats.
- * - Ensured tokenizer methods return consistent results for UI display and N-gram/Markov processing.
- * @author CS4485 Team
- * @version 1.0
+ * Service class providing text processing operations including file reading,
+ * tokenization, and text normalization for the import pipeline.
+ *
+ * This service supports all frontend file import workflows, handling file I/O
+ * operations with proper error handling and delegating tokenization to the
+ * TextTokenizer algorithm. Reads text files of various formats (TXT, with
+ * graceful fallback for unsupported formats) and breaks content into words
+ * and sentences for analysis.
+ *
+ * Ensures tokenizer methods return consistent results suitable for both UI
+ * display and downstream N-gram/Markov processing, maintaining data quality
+ * throughout the text processing pipeline.
+ *
+ * @author Johnathan Pedraza
+ * @author Rahman-Danish, Rizvy
  */
 public class TextProcessingService {
 

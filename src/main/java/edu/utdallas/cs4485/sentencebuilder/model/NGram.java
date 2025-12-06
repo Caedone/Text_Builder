@@ -1,39 +1,23 @@
-/******************************************************************************
- * N-Gram Model Class
- *
- * This class represents an N-gram used in the Sentence Builder application for
- * probabilistic text generation. It stores the N-gram sequence, its component
- * words, and statistical data needed for modeling transitions in N-gram and
- * Markov-based algorithms.
- *
- * Key functionality includes:
- * 1. N-Gram Structure:
- *    - Stores the N value, full sequence text, and tokenized word array.
- *
- * 2. Transition Data:
- *    - Tracks the next word ID, transition count, and computed probability.
- *
- * 3. Database + UI Support:
- *    - Includes IDs, timestamps, and optional display fields, with automatic
- *      synchronization between ngramText and its word array.
- *
- * The class is used by the text-generation engine and database layer to build
- * conditional word prediction models.
- *
- * Written by Bhaskar Atmakuri for CS4485.0W1, capstone project, starting October 2025.
- * NetID: BXA210025
- ******************************************************************************/
-
 package edu.utdallas.cs4485.sentencebuilder.model;
 
 import java.sql.Timestamp;
 
 /**
- * Model class representing an N-gram (sequence of N words) in the database.
- * Used for N-gram based text generation.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Model class representing an N-gram sequence used for probabilistic text
+ * generation with configurable context length.
+ *
+ * An N-gram is a sequence of N consecutive words from source texts. This class
+ * stores the N value (2-5), the complete sequence text, tokenized word array,
+ * and the ID of the word that follows this sequence. It also tracks transition
+ * counts and calculated probabilities for generation decisions.
+ *
+ * The class maintains automatic synchronization between the ngramText string and
+ * its word array, includes database timestamps, and provides optional display
+ * fields for UI integration. Used by both the text-generation engine and database
+ * layer to build context-aware word prediction models.
+ *
+ * @author Bhaskar Atmakuri
  */
 public class NGram {
 

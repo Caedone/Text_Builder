@@ -12,16 +12,22 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Service class for N-gram operations.
- * Handles text processing, N-gram generation, and database persistence.
  *
- * Rizvy – Testing & Integration Notes:
- * - Verified that N-gram data feeds both text generation and autocomplete.
- * - Confirmed that this service provides a clean API for the JavaFX controllers.
- * - Checked behavior across different N values (bi-grams, tri-grams, etc.).
+ * Service class managing N-gram operations including text processing, sequence
+ * extraction, generation, and database persistence.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Coordinates between the NGramGenerator algorithm and database layer, processing
+ * imported text to extract N-gram sequences with configurable N values (bigrams,
+ * trigrams, etc.). The extracted N-gram data feeds both text generation and
+ * autocomplete functionality throughout the application.
+ *
+ * Provides a clean API for JavaFX controllers to request N-gram-based text
+ * generation with various parameters, ensuring efficient DAO usage for database
+ * operations. Validates behavior across different N values and maintains data
+ * quality for downstream consumers.
+ *
+ * @author Caedon Ewing
+ * @author Rahman-Danish, Rizvy
  */
 public class NGramService {
 

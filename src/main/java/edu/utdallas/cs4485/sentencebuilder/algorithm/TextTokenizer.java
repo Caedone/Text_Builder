@@ -5,30 +5,24 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/******************************************************************************
- * Text Tokenization Utility for Sentence Builder
+/**
  *
- * This class provides static helper methods used by the backend pipeline to
- * turn raw text into clean tokens that our Markov and N-gram algorithms can
- * train on. It is responsible for:
+ * Utility class providing static tokenization methods to transform raw text into
+ * clean, normalized tokens for Markov and N-gram algorithm training.
  *
- *  - Splitting raw input into individual word tokens while preserving
- *    sentence-ending punctuation as separate tokens when needed.
- *  - Splitting larger blocks of text into individual sentences so the
- *    algorithms can respect sentence boundaries.
- *  - Normalizing text by collapsing whitespace and converting to lowercase
- *    so that "Dog", "dog", and "DOG" are treated as the same word.
- *  - Utility checks for punctuation and sentence-end markers, and helpers
- *    to strip punctuation and validate that a token is a real word.
+ * Handles multiple tokenization tasks essential for text processing: splitting raw
+ * input into individual word tokens while preserving sentence-ending punctuation,
+ * splitting larger text blocks into discrete sentences for boundary detection,
+ * normalizing text through whitespace collapsing and lowercase conversion to ensure
+ * consistent treatment of word variations like "Dog", "dog", and "DOG".
  *
- * The methods here are used by the TextProcessingService and the file-import
- * pipeline when documents are uploaded. By centralizing tokenization logic
- * in this class, we ensure that all training data is cleaned and normalized
- * the same way regardless of where it comes from.
+ * Provides utility methods to identify punctuation and sentence-end markers, strip
+ * punctuation from tokens, and validate whether tokens represent real words. Used
+ * throughout the TextProcessingService and file-import pipeline to ensure all
+ * training data receives consistent cleaning and normalization regardless of source.
  *
- * Written by Johnathan Pedraza for CS4485.0W1, capstone project, Fall 2025.
- * NetID: jxp220060
- ******************************************************************************/
+ * @author Johnathan Pedraza
+ */
 
 public class TextTokenizer {
 

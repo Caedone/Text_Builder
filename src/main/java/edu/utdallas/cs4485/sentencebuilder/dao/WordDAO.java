@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
 import java.sql.Connection;
@@ -15,11 +11,19 @@ import java.util.List;
 import edu.utdallas.cs4485.sentencebuilder.model.Word;
 
 /**
- * Data Access Object for Word entities. Handles all database operations for
- * words.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Data Access Object for Word entities. Provides CRUD operations and queries
+ * for managing individual word statistics in the database.
+ *
+ * This DAO handles persistence of word metadata including occurrence counts,
+ * sentence position statistics (start/end counts), and word retrieval operations.
+ * It supports both individual word operations and batch queries for generating
+ * text and analyzing word frequency patterns.
+ *
+ * All database operations use prepared statements to prevent SQL injection and
+ * ensure type safety. Connections are managed through the DatabaseConnection pool.
+ *
+ * @author Bhaskar Atmakuri
  */
 public class WordDAO {
 

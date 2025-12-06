@@ -2,36 +2,22 @@ package edu.utdallas.cs4485.sentencebuilder.model;
 
 import java.sql.Timestamp;
 
-/******************************************************************************
- * Imported File Model
- *
- * This class represents a single file that has been imported (or is in the
- * process of being imported) into the Sentence Builder system. It mirrors the
- * imported_files table in the database and is used by the backend services
- * and the UI to track progress and results of the import pipeline.
- *
- * Each ImportedFile instance captures:
- *  - A unique file ID from the database
- *  - The original filename and file system path
- *  - The total word count discovered during processing
- *  - The date/time the import was attempted
- *  - A status flag showing whether the import is pending, processing,
- *    completed, or failed
- *  - An optional error message when something goes wrong
- *
- * The status and helper methods (markAsProcessing, markAsCompleted,
- * markAsFailed) make it easy for the service layer to update progress in a
- * consistent way so the JavaFX UI can show accurate import history and
- * error information to the user.
- *
- * Written by Johnathan Pedraza for CS4485.0W1, capstone project
- * "Sentence Builder / Babble", starting October 2025.
- * NetID: jxp220060
- ******************************************************************************/
-
 /**
- * Model class representing an imported file in the database.
- * Tracks file import history and status through the full pipeline.
+ *
+ * Model class representing a file that has been imported or is being imported
+ * into the Sentence Builder system for text analysis and processing.
+ *
+ * This class mirrors the imported_files database table and tracks the complete
+ * lifecycle of file imports including unique file ID, original filename and path,
+ * total word count discovered during processing, import timestamp, processing
+ * status (pending, processing, completed, or failed), and any error messages.
+ *
+ * Helper methods like markAsProcessing, markAsCompleted, and markAsFailed enable
+ * the service layer to update import progress consistently. The JavaFX UI uses
+ * this model to display accurate import history and error information to users,
+ * ensuring transparency throughout the import pipeline.
+ *
+ * @author Johnathan Pedraza
  */
 
 public class ImportedFile {

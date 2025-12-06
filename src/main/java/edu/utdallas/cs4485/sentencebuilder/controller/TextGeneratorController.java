@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.controller;
 
 import edu.utdallas.cs4485.sentencebuilder.model.GenerationResult;
@@ -17,11 +13,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 /**
- * Controller for the text generation tab. Handles user input for text
- * generation parameters.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Controller for the text generation interface. This class manages user interactions
+ * for generating text using Markov Chain and N-gram algorithms based on previously
+ * imported and processed text data.
+ *
+ * Users can specify generation parameters including starting word, target word count,
+ * and algorithm selection (first-order Markov, second-order Markov, or N-gram with
+ * configurable N value from 2-5). The controller also provides autocomplete suggestions
+ * as users type their starting word.
+ *
+ * Generated text is displayed in a text area along with status information about the
+ * generation process. The autocomplete feature uses word frequency and context to
+ * suggest likely next words.
+ *
+ * @author Caedon Ewing
  */
 public class TextGeneratorController {
 

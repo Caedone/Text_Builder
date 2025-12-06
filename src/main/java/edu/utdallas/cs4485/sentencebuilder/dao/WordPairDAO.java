@@ -1,7 +1,3 @@
-/**
- *  Written by Manraj Singh for CS Project, starting Oct 28, 2025.
- *  NetID: mxs220007
- */
 package edu.utdallas.cs4485.sentencebuilder.dao;
 
 import java.sql.Connection;
@@ -15,11 +11,20 @@ import java.util.List;
 import edu.utdallas.cs4485.sentencebuilder.model.WordPair;
 
 /**
- * Data Access Object for WordPair entities. Handles all database operations for
- * word pairs.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Data Access Object for WordPair entities. Manages storage and retrieval of
+ * word transition relationships used in Markov chain text generation.
+ *
+ * Word pairs represent sequential word relationships extracted from source texts,
+ * storing transition counts and calculated probabilities. These relationships form
+ * the foundation of first-order and second-order Markov chain algorithms.
+ *
+ * Supports operations for inserting new pairs, updating transition statistics,
+ * querying pairs by various criteria, and calculating transition probabilities
+ * for text generation decisions.
+ *
+ * @author Johnathan Pedraza
+ * @author Rahman-Danish, Rizvy
  */
 public class WordPairDAO {
 

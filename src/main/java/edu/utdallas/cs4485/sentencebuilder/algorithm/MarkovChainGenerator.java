@@ -3,11 +3,21 @@ package edu.utdallas.cs4485.sentencebuilder.algorithm;
 import java.util.*;
 
 /**
- * Implements first-order and second-order Markov chain text generation.
- * Trains on input text and generates new text based on learned patterns.
  *
- * @author CS4485 Team
- * @version 1.0
+ * Core algorithm implementing first-order and second-order Markov chain text
+ * generation through probabilistic word sequence modeling.
+ *
+ * Trains on input text to learn word transition patterns, building internal maps
+ * of word-to-word relationships (first-order) and word-pair-to-word relationships
+ * (second-order). Uses these learned patterns to generate new text that statistically
+ * resembles the training corpus while creating novel combinations.
+ *
+ * Maintains separate chains for each order and tracks valid sentence-starting words.
+ * Generation proceeds by randomly selecting next words based on context, with
+ * fallback mechanisms when exact patterns aren't found. Supports configurable
+ * output length and starting words for controlled generation.
+ *
+ * @author Johnathan Pedraza
  */
 public class MarkovChainGenerator {
 
